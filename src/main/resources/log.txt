@@ -1,0 +1,6 @@
+com.epam.jdbc_example.DbConnection:com.epam.jdbc_example.DbConnection.getDbConnection(DbConnection.java:52)connected to database
+com.epam.jdbc_example.DbConnection:com.epam.jdbc_example.DbConnection.getDbConnection(DbConnection.java:52)connected to database
+com.epam.jdbc_example.DbConnection:com.epam.jdbc_example.DbConnection.getDbConnection(DbConnection.java:54)connection established
+com.epam.jdbc_example.JdbcExample:com.epam.jdbc_example.JdbcExample.main(JdbcExample.java:20)connected to database
+com.epam.jdbc_example.DbConnection:com.epam.jdbc_example.DbConnection.getDbConnection(DbConnection.java:54)connection established
+com.epam.jdbc_example.JdbcExample:com.epam.jdbc_example.JdbcExample.main(JdbcExample.java:20)
