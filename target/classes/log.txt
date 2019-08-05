@@ -3,4 +3,20 @@ com.epam.jdbc_example.DbConnection:com.epam.jdbc_example.DbConnection.getDbConne
 com.epam.jdbc_example.DbConnection:com.epam.jdbc_example.DbConnection.getDbConnection(DbConnection.java:54)connection established
 com.epam.jdbc_example.JdbcExample:com.epam.jdbc_example.JdbcExample.main(JdbcExample.java:20)connected to database
 com.epam.jdbc_example.DbConnection:com.epam.jdbc_example.DbConnection.getDbConnection(DbConnection.java:54)connection established
-com.epam.jdbc_example.JdbcExample:com.epam.jdbc_example.JdbcExample.main(JdbcExample.java:20)
+com.epam.jdbc_example.JdbcExample:com.epam.jdbc_example.JdbcExample.main(JdbcExample.java:20)connected to database
+com.epam.jdbc_example.DbConnection:com.epam.jdbc_example.DbConnection.getDbConnection(DbConnection.java:54)connection established
+com.epam.jdbc_example.JdbcExample:com.epam.jdbc_example.JdbcExample.main(JdbcExample.java:32)connected to database
+com.epam.jdbc_example.DbConnection:com.epam.jdbc_example.DbConnection.getDbConnection(DbConnection.java:54)sql exception occured
+com.epam.jdbc_example.JdbcExample:com.epam.jdbc_example.JdbcExample.createTable(JdbcExample.java:22)connected to database
+com.epam.jdbc_example.DbConnection:com.epam.jdbc_example.DbConnection.getDbConnection(DbConnection.java:54)sql exception occured
+com.epam.jdbc_example.JdbcExample:com.epam.jdbc_example.JdbcExample.createTable(JdbcExample.java:24)connected to database
+com.epam.jdbc_example.DbConnection:com.epam.jdbc_example.DbConnection.getDbConnection(DbConnection.java:54)No database selected
+com.epam.jdbc_example.JdbcExample:com.epam.jdbc_example.JdbcExample.createTable(JdbcExample.java:24)connected to database
+com.epam.jdbc_example.DbConnection:com.epam.jdbc_example.DbConnection.getDbConnection(DbConnection.java:54)No database selected
+com.epam.jdbc_example.JdbcExample:com.epam.jdbc_example.JdbcExample.createTable(JdbcExample.java:24)connected to database
+com.epam.jdbc_example.DbConnection:com.epam.jdbc_example.DbConnection.getDbConnection(DbConnection.java:54)table : employeeis created
+com.epam.jdbc_example.JdbcExample:com.epam.jdbc_example.JdbcExample.createTable(JdbcExample.java:21)connected to database
+com.epam.jdbc_example.DbConnection:com.epam.jdbc_example.DbConnection.getDbConnection(DbConnection.java:54)connected to database
+com.epam.jdbc_example.DbConnection:com.epam.jdbc_example.DbConnection.getDbConnection(DbConnection.java:54)Table 'employee' already exists
+com.epam.jdbc_example.JdbcExample:com.epam.jdbc_example.JdbcExample.createTable(JdbcExample.java:25)Table 'employee' already exists
+com.epam.jdbc_example.JdbcExample:com.epam.jdbc_example.JdbcExample.createTable(JdbcExample.java:25)
