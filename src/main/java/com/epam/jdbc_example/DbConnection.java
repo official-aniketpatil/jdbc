@@ -16,14 +16,14 @@ import com.epam.exception.DbConnectionFailedException;
 public class DbConnection {
 
 	private static final Logger logger = LogManager.getLogger(DbConnection.class);
-	private String propertyFileUrl = "src/main/resources/application.properties";
+	private static final String PROPERTY_FILE_URL = "src/main/resources/application.properties";
 	private Properties properties;
 
 	private void loadProperties() {
 
 		properties = new Properties();
 
-		try (InputStream inputStream = new FileInputStream(propertyFileUrl);) {
+		try (InputStream inputStream = new FileInputStream(PROPERTY_FILE_URL);) {
 
 			properties.load(inputStream);
 
@@ -51,7 +51,7 @@ public class DbConnection {
 			
 		}
 
-		logger.trace("connected to database");
+		logger.info("connected to database");
 
 		return conn;
 	}
