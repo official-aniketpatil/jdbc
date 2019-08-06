@@ -57,7 +57,30 @@ public class JdbcExample {
 	}
 	
 	public void updateEmployee(int id) {
+		Employee emp = new Employee();
+		System.out.println("Enter employee id");
+		emp.setId(sc.nextInt());
+		System.out.println("Enter name of employee");
+		emp.setName(sc.next().trim());
+		System.out.println("Enter level");
+		emp.setLevel(sc.nextInt());
+		System.out.println("Enter email");
+		emp.setEmail(sc.next().trim());
+		System.out.println("Enter Department");
+		emp.setDepartment(sc.next().trim());
+		Address address = new Address();
+		System.out.println("Enter locality");
+		address.setLocality(sc.next().trim());
+		System.out.println("Enter city");
+		address.setCity(sc.next().trim());
+		System.out.println("Enter state");
+		address.setState(sc.next().trim());
+		System.out.println("Enter landmark");
+		address.setLandmark(sc.next().trim());
+		System.out.println("Enter zip");
+		address.setZip(sc.nextInt());
 		
+		emp.setAddress(address);
 	}
 	
 	public void deleteEmployee(int id) {
