@@ -3,6 +3,7 @@ package com.epam.jdbc_example;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.Scanner;
 
 import org.apache.log4j.LogManager;
@@ -18,101 +19,74 @@ public class JdbcExample {
 	Scanner sc = new Scanner(System.in);
 	private EmployeeDao employeeDao;
 	
+	public JdbcExample(EmployeeDao employeeDao){
+		this.employeeDao = employeeDao;
+	}
 	public int getChoice() {
-		System.out.println("Enter\n1) add new employee");
-		System.out.println("2) update existing employee");
-		System.out.println("3) delete employee");
-		System.out.println("4) show employee details");
-		System.out.println("5) exit");
+		logger.trace("Enter\n1) add new employee");
+		logger.trace("2) update existing employee");
+		logger.trace("3) delete employee");
+		logger.trace("4) show employee details");
+		logger.trace("5) exit");
 		
 		return sc.nextInt();
 	}
-	
+	private void showMenu() {
+		logger.trace("Enter Employee dedtails in sequence");
+		logger.trace("* employee id");
+		logger.trace("* name of employee");
+		logger.trace("* level");
+		logger.trace("* email");
+		logger.trace("* Department");
+		logger.trace("* locality");
+		logger.trace("* city");
+		logger.trace("* state");
+		logger.trace("* landmark");
+		logger.trace("* zip");
+
+	}
 	public void addEmployee() {
 		Employee emp = new Employee();
-		System.out.println("Enter employee id");
-		emp.setId(sc.nextInt());
-		System.out.println("Enter name of employee");
-		emp.setName(sc.next().trim());
-		System.out.println("Enter level");
-		emp.setLevel(sc.nextInt());
-		System.out.println("Enter email");
-		emp.setEmail(sc.next().trim());
-		System.out.println("Enter Department");
-		emp.setDepartment(sc.next().trim());
-		Address address = new Address();
-		System.out.println("Enter locality");
-		address.setLocality(sc.next().trim());
-		System.out.println("Enter city");
-		address.setCity(sc.next().trim());
-		System.out.println("Enter state");
-		address.setState(sc.next().trim());
-		System.out.println("Enter landmark");
-		address.setLandmark(sc.next().trim());
-		System.out.println("Enter zip");
-		address.setZip(sc.nextInt());
-		
-		emp.setAddress(address);
+		showMenu();
+		setEmployeeDetailsFromInput(emp);
 		employeeDao.add(emp);
 	}
 	
 	public void updateEmployee(int id) {
-		Employee emp = new Employee();
-		System.out.println("Enter employee id");
-		emp.setId(sc.nextInt());
-		System.out.println("Enter name of employee");
-		emp.setName(sc.next().trim());
-		System.out.println("Enter level");
-		emp.setLevel(sc.nextInt());
-		System.out.println("Enter email");
-		emp.setEmail(sc.next().trim());
-		System.out.println("Enter Department");
-		emp.setDepartment(sc.next().trim());
+
+		Employee emp = employeeDao.get(id);
+		logger.trace("existing employee is:" + emp);
+		showMenu();
+		setEmployeeDetailsFromInput(emp);
+		employeeDao.update(emp);
+	}
+	private void setEmployeeDetailsFromInput(Employee emp) {
 		Address address = new Address();
-		System.out.println("Enter locality");
+		
+		emp.setId(sc.nextInt());
+		emp.setName(sc.next().trim());
+		emp.setLevel(sc.nextInt());
+		emp.setEmail(sc.next().trim());
+		emp.setDepartment(sc.next().trim());
 		address.setLocality(sc.next().trim());
-		System.out.println("Enter city");
 		address.setCity(sc.next().trim());
-		System.out.println("Enter state");
 		address.setState(sc.next().trim());
-		System.out.println("Enter landmark");
 		address.setLandmark(sc.next().trim());
-		System.out.println("Enter zip");
 		address.setZip(sc.nextInt());
 		
 		emp.setAddress(address);
 	}
-	
 	public void deleteEmployee(int id) {
 		employeeDao.remove(id);
 	}
 	
 	public void showEmployeeDetails() {
-		
-	}
-	public void createDbSchema() {
-		createTable("create table employee(id int primary key, name varchar(20), email varchar(30),level int)");
-		createTable("create table address(emp_id int, locality varchar(20), city varchar(20), state varchar(20)), landmark varchar(40), zip int");
-		createTable("create table department(emp_id int, dept_id int primary key, dept_name varchar(20)) ");
-	}
-	
-	public void createTable(String query) {
-		try (Connection connection = new DbConnection().getDbConnection();
-				Statement stmt = connection.createStatement();) {
-			stmt.execute("use epam");
-			stmt.execute(query);
-			logger.info("table is created");
-			
-		} catch (DbConnectionFailedException ex) {
-			
-			logger.error(ex.getMessage());
-		
-		} catch (SQLException sqle) {
-			
-			logger.error(sqle.getMessage());
-			
+		List<Employee> employees = employeeDao.getAllEmployees();
+		for(Employee emp: employees) {
+			logger.trace(emp);
 		}
 	}
+	
 
 	public void helper() {
 		int choice = 0;
@@ -123,10 +97,12 @@ public class JdbcExample {
 				addEmployee();
 				break;
 			case 2:
-				updateEmployee();
+				logger.trace("Enter id of employee to edit");
+				updateEmployee(sc.nextInt());
 				break;
 			case 3:
-				deleteEmployee();
+				logger.trace("Enter id of employee to delete");
+				deleteEmployee(sc.nextInt());
 				break;
 			case 4:
 				showEmployeeDetails();
@@ -139,7 +115,8 @@ public class JdbcExample {
 	}
 
 	public static void main(String[] args) {
-			
+			JdbcExample jdbcExample = new JdbcExample(new EmployeeDao());
+			jdbcExample.helper();
 	}
 
 }
