@@ -1,4 +1,4 @@
-package com.epam.jdbc_example;
+package com.epam.jdbc;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import java.util.Properties;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import com.epam.exception.DbConnectionFailedException;
+import com.epam.jdbc.exception.DbConnectionFailedException;
 
 public class DbConnection {
 

@@ -1,4 +1,4 @@
-package com.epam.model;
+package com.epam.jdbc.model;
 
 public class Employee {
 	private int id;

@@ -1,4 +1,4 @@
-package com.epam.jdbc_example;
+package com.epam.jdbc.dao.impl;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,15 +10,17 @@ import java.util.List;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import com.epam.exception.RecordNotFoundException;
-import com.epam.model.Address;
-import com.epam.model.Employee;
+import com.epam.jdbc.DbConnection;
+import com.epam.jdbc.dao.EmployeeDao;
+import com.epam.jdbc.exception.RecordNotFoundException;
+import com.epam.jdbc.model.Address;
+import com.epam.jdbc.model.Employee;
 
-public class EmployeeDao {
+public class EmployeeDaoImplementation implements EmployeeDao {
 	private Connection connection;
-	private static final Logger logger = LogManager.getLogger(EmployeeDao.class);
+	private static final Logger logger = LogManager.getLogger(EmployeeDaoImplementation.class);
 
-	public EmployeeDao() {
+	public EmployeeDaoImplementation() {
 		this.connection = new DbConnection().getDbConnection();
 	}
 

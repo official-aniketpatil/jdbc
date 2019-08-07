@@ -1,4 +1,4 @@
-package com.epam.exception;
+package com.epam.jdbc.exception;
 
 public class DbConnectionFailedException extends RuntimeException {
 	

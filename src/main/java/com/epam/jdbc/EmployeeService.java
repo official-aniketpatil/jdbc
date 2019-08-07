@@ -1,4 +1,4 @@
-package com.epam.jdbc_example;
+package com.epam.jdbc;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -9,17 +9,19 @@ import java.util.Scanner;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import com.epam.exception.DbConnectionFailedException;
-import com.epam.model.Address;
-import com.epam.model.Employee;
+import com.epam.jdbc.dao.EmployeeDao;
+import com.epam.jdbc.dao.impl.EmployeeDaoImplementation;
+import com.epam.jdbc.exception.DbConnectionFailedException;
+import com.epam.jdbc.model.Address;
+import com.epam.jdbc.model.Employee;
 
-public class JdbcExample {
+public class EmployeeService {
 
-	private static final Logger logger = LogManager.getLogger(JdbcExample.class);
+	private static final Logger logger = LogManager.getLogger(EmployeeService.class);
 	Scanner sc = new Scanner(System.in);
 	private EmployeeDao employeeDao;
 	
-	public JdbcExample(EmployeeDao employeeDao){
+	public EmployeeService(EmployeeDao employeeDao){
 		this.employeeDao = employeeDao;
 	}
 	public int getChoice() {
@@ -115,7 +117,7 @@ public class JdbcExample {
 	}
 
 	public static void main(String[] args) {
-			JdbcExample jdbcExample = new JdbcExample(new EmployeeDao());
+			EmployeeService jdbcExample = new EmployeeService(new EmployeeDaoImplementation());
 			jdbcExample.helper();
 	}
 
