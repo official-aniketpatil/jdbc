@@ -1,4 +1,4 @@
-package com.epam.jdbc;
+package com.epam.jdbc.launcher;
 
 import java.io.FileInputStream;
 import java.io.IOException;

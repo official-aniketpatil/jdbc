@@ -10,9 +10,9 @@ import java.util.List;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import com.epam.jdbc.DbConnection;
 import com.epam.jdbc.dao.EmployeeDao;
 import com.epam.jdbc.exception.RecordNotFoundException;
+import com.epam.jdbc.launcher.DbConnection;
 import com.epam.jdbc.model.Address;
 import com.epam.jdbc.model.Employee;
 
@@ -38,11 +38,10 @@ public class EmployeeDaoImplementation implements EmployeeDao {
 					+ employee.getId() + ",'" + address.getLocality() + "','" + address.getCity() + "','"
 					+ address.getState() + "','" + address.getLandmark() + "'," + address.getZip() + ")";
 			
-			System.out.println(addrInsertionQuery);
-
 			stmt.execute(empInsertionQuery);
 			stmt.execute(deptInsertionQuery);
 			stmt.execute(addrInsertionQuery);
+			logger.trace("employee successfully added");
 
 		} catch (SQLException sqle) {
 			logger.error(sqle.getMessage());
@@ -56,6 +55,7 @@ public class EmployeeDaoImplementation implements EmployeeDao {
 			stmt.execute("delete from employee where emp_id = " + id);
 			stmt.execute("delete from department where emp_id = " + id);
 			stmt.execute("delete from address where emp_id = " + id);
+			logger.trace("employee successfully removed");
 		} catch (SQLException sqle) {
 			logger.error(sqle.getMessage());
 		}
@@ -93,7 +93,7 @@ public class EmployeeDaoImplementation implements EmployeeDao {
 		try (Statement stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery("select emp_id from employee")) {
 			while (rs.next()) {
-				Employee emp = get(rs.getInt("emp_id"));
+				Employee emp = getById(rs.getInt("emp_id"));
 				employees.add(emp);
 			}
 		} catch (SQLException sqle) {
@@ -102,7 +102,7 @@ public class EmployeeDaoImplementation implements EmployeeDao {
 		return employees;
 	}
 
-	public Employee get(int id) {
+	public Employee getById(int id) {
 		Employee emp = new Employee();
 		
 		String getEmployeeQuery = "SELECT employee.emp_id, employee.emp_name,"
@@ -111,9 +111,7 @@ public class EmployeeDaoImplementation implements EmployeeDao {
 				+ "address.state,address.state,address.landmark,"
 				+ "address.zip from employee JOIN address JOIN department "
 				+ "where employee.emp_id = " + id;
-		
-		logger.trace(getEmployeeQuery);
-		
+			
 		try (Statement stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery(getEmployeeQuery);) {
 			while(rs.next()) {

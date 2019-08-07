@@ -1,8 +1,5 @@
-package com.epam.jdbc;
+package com.epam.jdbc.launcher;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,7 +8,6 @@ import org.apache.log4j.Logger;
 
 import com.epam.jdbc.dao.EmployeeDao;
 import com.epam.jdbc.dao.impl.EmployeeDaoImplementation;
-import com.epam.jdbc.exception.DbConnectionFailedException;
 import com.epam.jdbc.model.Address;
 import com.epam.jdbc.model.Employee;
 
@@ -56,7 +52,7 @@ public class EmployeeService {
 	
 	public void updateEmployee(int id) {
 
-		Employee emp = employeeDao.get(id);
+		Employee emp = employeeDao.getById(id);
 		logger.trace("existing employee is:" + emp);
 		showMenu();
 		setEmployeeDetailsFromInput(emp);
